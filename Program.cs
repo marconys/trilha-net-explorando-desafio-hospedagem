@@ -1,22 +1,51 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using DesafioProjetoHospedagem.Models;
 
 Console.OutputEncoding = Encoding.UTF8;
 
+Console.WriteLine("Seja Bem Vindo Ao Sistema De Hospedagem!");
+
+Console.Write("Gostaria de fazer uma reserva para uma ou duas pessoas? (Digite Apenas Números): ");
+
+int[] quantidadeHospedes = new int [int.Parse(Console.ReadLine() ?? "0")];
 // Cria os modelos de hóspedes e cadastra na lista de hóspedes
 List<Pessoa> hospedes = new List<Pessoa>();
+Pessoa pessoa = new Pessoa();
 
-Pessoa p1 = new Pessoa(nome: "Hóspede 1");
-Pessoa p2 = new Pessoa(nome: "Hóspede 2");
+for (int i = 0; i < quantidadeHospedes.Length; i++)
+{
+    Console.Write($"Digite o nome do {i + 1}º hóspede: ");
+    pessoa.Nome = Console.ReadLine();
+    hospedes.Add(pessoa);
+}
 
-hospedes.Add(p1);
-hospedes.Add(p2);
+Console.Write("Qual o tipo de suite deseja?\n(1) Premium: Até duas pessoas.\n(2) Econômica: Uma pessoa\n(Opção 1 ou 2:): ");
+int categoriaSuite = int.Parse(Console.ReadLine() ?? "2");
 
-// Cria a suíte
-Suite suite = new Suite(tipoSuite: "Premium", capacidade: 2, valorDiaria: 30);
+
+Suite suite = new Suite();
+int diasReservados = 0;
+
+if (categoriaSuite == 1)
+{
+    suite.TipoSuite = "Premium";
+    suite.Capacidade = 2;
+    suite.ValorDiaria = 30;
+    Console.WriteLine("Quantos dias?");
+    diasReservados = int.Parse(Console.ReadLine());
+
+} else
+{
+    suite.TipoSuite = "Econômica";
+    suite.Capacidade = 1;
+    suite.ValorDiaria = 40;
+    Console.WriteLine("Quantos dias?");
+    diasReservados = int.Parse(Console.ReadLine());
+}
 
 // Cria uma nova reserva, passando a suíte e os hóspedes
-Reserva reserva = new Reserva(diasReservados: 5);
+Reserva reserva = new Reserva(diasReservados: diasReservados);
 reserva.CadastrarSuite(suite);
 reserva.CadastrarHospedes(hospedes);
 
