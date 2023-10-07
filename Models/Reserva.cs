@@ -49,5 +49,10 @@ namespace DesafioProjetoHospedagem.Models
 
             return valor;
         }
+
+        public string ObterTipoDaSuite()
+        {
+            return Suite.TipoSuite;
+        }
     }
 }
