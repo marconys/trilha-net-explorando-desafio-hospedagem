@@ -7,13 +7,13 @@ Console.OutputEncoding = Encoding.UTF8;
 Console.WriteLine("Seja Bem Vindo Ao Sistema De Hospedagem !");
 
 Console.Write("Gostaria de fazer uma reserva para uma ou duas pessoas? (Digite Apenas Números): ");
-int quantidadeHospedes = int.Parse(Console.ReadLine() ?? "0");
+int quantidaDeHospedes = int.Parse(Console.ReadLine() ?? "0");
 
 // Cria os modelos de hóspedes e cadastra na lista de hóspedes
 List<Pessoa> hospedes = new List<Pessoa>();
 Pessoa pessoa = new Pessoa();
 
-for (int i = 0; i < quantidadeHospedes; i++)
+for (int i = 0; i < quantidaDeHospedes; i++)
 {
     Console.Write($"Digite o nome do {i + 1}º hóspede: ");
     pessoa.Nome = Console.ReadLine();
